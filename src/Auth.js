@@ -6,6 +6,7 @@ const LOGIN_SUCCESS_PAGE = "/secret"
 const LOGIN_FAILURE_PAGE = "/notfound"
 
 export default class Auth {
+
     auth0 = new auth0.WebAuth({
         domain:"angeltorres.auth0.com",
         clientID:"R5lgNAkBINJTDLBkiEzlKGO5eOmpl3va",
@@ -14,7 +15,6 @@ export default class Auth {
         responseType:"token id_token",
         scope:"openid"
     });
-
     // auth0 = new auth0.WebAuth({
     //     domain:process.env.REACT_APP_DOMAIN,
     //     clientID:process.env.REACT_APP_CLIENT_ID,
@@ -34,13 +34,15 @@ export default class Auth {
 
     handleAuthentication() {
         this.auth0.parseHash( (err, authResults)=> {
-            if(authResults && authResults.accessToken && authResults.idToken) {
+            if (authResults && authResults.accessToken && authResults.idToken) {
                 let expiresAt = JSON.stringify((authResults.expiresIn * 1000 + new Date().getTime));
                 localStorage.setItem("access_token", authResults.accessToken);
                 localStorage.setItem("id_token", authResults.idToken);
                 localStorage.setItem("expires_at", expiresAt);
                 location.hash = "";
-                location.path = LOGIN_SUCCESS_PAGE
+                location.pathname = LOGIN_SUCCESS_PAGE;
+                console.log("location.path - ",location.path)
+                console.log("location.hash - ",location.hash)
             } else if (err) {
                 location.pathname = LOGIN_FAILURE_PAGE;
                 console.log(err);
