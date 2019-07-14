@@ -7,6 +7,7 @@ import { Route } from 'react-router-dom';
 import Login from './views/Login';
 import Callback from './views/Callback';
 import Secret from './views/Secret';
+import NotFound from './views/NotFound';
 
 // Auth
 import Auth from "./Auth";
@@ -19,6 +20,7 @@ function App() {
       <Route exact path="/" render={() => <Login auth={auth} />} />
       <Route path="/callback" render={() => < Callback auth={auth} />} />
       <Route path="/secret" render={() => < Secret auth={auth} />} />
+      <Route path="/notfound" render={() => < NotFound auth={auth} />} />
     </div>
   );
 }
