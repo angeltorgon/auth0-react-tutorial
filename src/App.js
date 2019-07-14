@@ -7,10 +7,15 @@ import { Route } from 'react-router-dom';
 import Login from './views/Login';
 import Redirect from './views/Redirect';
 
+// Auth
+import Auth from "./Auth";
+
+
 function App() {
+  const auth = new Auth();
   return (
     <div className="App">
-      <Route exact path="/" component={Login} />
+      <Route exact path="/" render={() => <Login auth={auth} />} />
       <Route path="/redirect" component={Redirect} />
     </div>
   );
