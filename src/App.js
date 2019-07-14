@@ -1,14 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import { Route } from 'react-router-dom';
 
 // Component imports
 import Login from './views/Login';
+import Redirect from './views/Redirect';
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <Route exact path="/" component={Login} />
+      <Route path="/redirect" component={Redirect} />
     </div>
   );
 }
