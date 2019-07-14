@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 
 // Component imports
 import Login from './views/Login';
-import Redirect from './views/Redirect';
+import Callback from './views/Callback';
 
 // Auth
 import Auth from "./Auth";
@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Route exact path="/" render={() => <Login auth={auth} />} />
-      <Route path="/redirect" component={Redirect} />
+      <Route path="/callback" render={() => < Callback auth={auth} />} />
     </div>
   );
 }
