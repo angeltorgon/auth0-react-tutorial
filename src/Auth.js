@@ -1,9 +1,9 @@
 /* eslint no-restricted-globals: 0 */
 import auth0 from "auth0-js";
-import Login from "./views/Login";
 
 const LOGIN_SUCCESS_PAGE = "/secret"
 const LOGIN_FAILURE_PAGE = "/notfound"
+const LOGOUT_PAGE = "/"
 
 export default class Auth {
 
@@ -23,7 +23,7 @@ export default class Auth {
     handleAuthentication() {
         this.auth0.parseHash( (err, authResults)=> {
             if (authResults && authResults.accessToken && authResults.idToken) {
-                let expiresAt = JSON.stringify((authResults.expiresIn * 1000 + new Date().getTime));
+                let expiresAt = JSON.stringify((authResults.expiresIn * 1000 + new Date().getTime()));
                 localStorage.setItem("access_token", authResults.accessToken);
                 localStorage.setItem("id_token", authResults.idToken);
                 localStorage.setItem("expires_at", expiresAt);
@@ -45,6 +45,6 @@ export default class Auth {
         localStorage.removeItem("access_token");
         localStorage.removeItem("id_token");
         localStorage.removeItem("expires_at");
-        location.pathname = LOGIN_FAILURE_PAGE
+        location.pathname = LOGOUT_PAGE
     }
 };

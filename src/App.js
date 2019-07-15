@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <Route exact path="/" render={() => <Login auth={auth} />} />
       <Route path="/callback" render={() => < Callback auth={auth} />} />
-      <PrivateRoute path="/secret" component={Secret} auth={auth}/>
+      <PrivateRoute path="/secret" component={Secret} />
       <Route path="/notfound" render={() => < NotFound auth={auth} />} />
     </div>
   );
