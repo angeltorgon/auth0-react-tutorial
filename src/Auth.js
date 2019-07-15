@@ -15,18 +15,6 @@ export default class Auth {
         responseType:"token id_token",
         scope:"openid"
     });
-    // auth0 = new auth0.WebAuth({
-    //     domain:process.env.REACT_APP_DOMAIN,
-    //     clientID:process.env.REACT_APP_CLIENT_ID,
-    //     redirectUri:process.env.REACT_APP_REDIRECTURI,
-    //     audience:process.env.REACT_APP_AUDIENCE,
-    //     responseType:process.env.REACT_APP_RESPONSE_TYPE,
-    //     scope:process.env.REACT_APP_SCOPE
-    // });
-    
-    constructor() {
-        this.login = this.login.bind(this);
-    }
     
     login() {
         this.auth0.authorize();
@@ -41,8 +29,6 @@ export default class Auth {
                 localStorage.setItem("expires_at", expiresAt);
                 location.hash = "";
                 location.pathname = LOGIN_SUCCESS_PAGE;
-                console.log("location.path - ",location.path)
-                console.log("location.hash - ",location.hash)
             } else if (err) {
                 location.pathname = LOGIN_FAILURE_PAGE;
                 console.log(err);
